@@ -1,0 +1,16 @@
+[
+    {
+        "ID": "58ca6c247467c",
+        "Name": "LLP010 Check List has Values",
+        "Type": "DATABASE",
+        "LIM_id": "3f07ecf4-0dfa-11e2-b0b9-12313b03ed59",
+        "Editable": true,
+        "LIM_name": "LIM14",
+        "Category": "z Global",
+        "data_type": "lookup",
+        "allow_offline": 0,
+        "Output_template": "{\"systemID\":\"59a4f21090a7f\",\"systemName\":\"Firmstep Solutions Read\",\"lookup_validation\":\"0\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\",\"query\":\"select \\n NoAddressesRtn,\\n IF(NoAddressesRtn>0,{postcode_search},'') as postcode_search_after,\\n IF(NoAddressesRtn<1,IF({postcode_search} IS NULL,'<span style=\\\"color:red;\\\">You need to provide a search value in the Postcode / Road search</span>','No matching addresses found please use different Postcode / Road search or use the address is not in the list option'),IF(NoAddressesRtn>300,'<span style=\\\"color:red;\\\">There are more results than can be displayed, if your address is not displayed try including a flat or house number/name.</span>','')) as adMsg\\nFROM\\n (select \\n COUNT(uprn) as NoAddressesRtn\\n FROM llpgcache\\n WHERE \\n (\\n (REPLACE(postcode, ' ','') = REPLACE({postcode_search},' ',''))\\n OR (concat(trim(concat(sao,' ',pao)),' ',street_name) like concat('%',{postcode_search},'%'))\\n )\\n AND length(REPLACE({postcode_search},' ',''))>5\\n AND postcode != '') as SubSel\"}",
+        "log_only_on_error": 1,
+        "error_notification": "{\"LIM_id\":\"3f07ecf4-0dfa-11e2-b0b9-12313b03ed59\",\"LIM_name\":\"LIM14\",\"recipients_to\":\"isbat1@portmouthcc.gov.uk\"}"
+    }
+]

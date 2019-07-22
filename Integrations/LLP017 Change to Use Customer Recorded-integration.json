@@ -1,0 +1,16 @@
+[
+    {
+        "ID": "58cac46f269a2",
+        "Name": "LLP017 Change to Use Customer Recorded",
+        "Type": "DATABASE",
+        "LIM_id": "3f07ecf4-0dfa-11e2-b0b9-12313b03ed59",
+        "Editable": true,
+        "LIM_name": "LIM14",
+        "Category": "z Global",
+        "data_type": "lookup",
+        "allow_offline": 0,
+        "Output_template": "{\"systemID\":\"59a4f21090a7f\",\"systemName\":\"Firmstep Solutions Read\",\"lookup_validation\":\"0\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\",\"query\":\"select\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), {flat}, '') as flat_out,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), {house}, '') as house_out,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), {street}, '') as street_out,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), {town}, '') as town_out, \\n\\tIF(({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%')\\n\\t\\tand ({country} IS NULL or {country} = '' or {country} = 'United Kingdom')), {postcode}, '') as postcode_out5,\\n\\tIF(({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%')\\n\\t\\tand ({country} IS NOT NULL and {country} != '' and {country} != 'United Kingdom')), {postcode}, '') as zIPPostcode,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), {country}, '') as country_out,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), {uprn}, '') as uprn_out,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), {lng}, '') as lng_out,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), {lat}, '') as lat_out,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), 1, '') as existSelected,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), 1, '') as existingCustomer,\\n 'ProcAi' as haveRun\"}",
+        "log_only_on_error": 1,
+        "error_notification": "{\"LIM_id\":\"3f07ecf4-0dfa-11e2-b0b9-12313b03ed59\",\"LIM_name\":\"LIM14\",\"recipients_to\":\"isbat1@portmouthcc.gov.uk\"}"
+    }
+]

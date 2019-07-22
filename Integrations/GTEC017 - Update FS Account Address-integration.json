@@ -1,0 +1,16 @@
+[
+    {
+        "ID": "585bc59582a06",
+        "Name": "GTEC017 - Update FS Account Address",
+        "Type": "PROFILE",
+        "LIM_id": "83ef69d1-2c5e-11e5-ad20-22000a7a05f5",
+        "Editable": true,
+        "LIM_name": "Portsmouth",
+        "Category": "GovTech",
+        "data_type": "integration-lookup",
+        "allow_offline": 0,
+        "Output_template": "{\"lookup_validation\":\"0\",\"profile_action\":\"update\",\"clean_data\":\"\",\"ucrn\":\"{ucrn}\",\"contact_type\":\"Individual\",\"organisation_name\":\"{Organisation_Name}\",\"title\":\"{Title}\",\"first_name\":\"{First_Name}\",\"last_name\":\"{Surname}\",\"suffix\":\"{Suffix}\",\"gender\":\"{gender_id}\",\"birth_date\":\"{Date_of_Birth}\",\"flat\":\"{newAddressDe/naFlat}\",\"house\":\"{newAddressDe/naHouse}\",\"street\":\"{newAddressDe/naRoad}\",\"town\":\"{newAddressDe/naTown}\",\"county\":\"\",\"locality\":\"\",\"country\":\"{newAddressDe/naCountry}\",\"postcode\":\"{newAddressDe/naPostCode}\",\"uprn\":\"{newAddressDe/na_uprn}\",\"address_type\":\"\",\"lat\":\"\",\"lng\":\"\",\"email_address\":\"{Email_Address}\",\"alternative_email\":\"{Alternative_Email}\",\"phone_number\":\"{Phone_Number}\",\"mobile_number\":\"{Mobile_Number}\",\"alternative_number\":\"{Alternative_Number}\",\"preferred_contact_method\":\"{prefContMet}\",\"preferred_language\":\"\",\"consent_to_share\":\"{consent_to_share_}\",\"twitter\":\"\"}",
+        "log_only_on_error": 0,
+        "error_notification": "{\"LIM_id\":\"3f07ecf4-0dfa-11e2-b0b9-12313b03ed59\",\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
+    }
+]
