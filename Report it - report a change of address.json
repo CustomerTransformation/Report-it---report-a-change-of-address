@@ -12,7 +12,7 @@
     "showCaseReference": false,
     "isPublished": true,
     "isSubform": false,
-    "notes": "update to subform for new address to make address mandatory for moving in or out of city",
+    "notes": "update for option to link to purchase property form",
     "initial_stage": "Stage 1",
     "initial_stage_id": "AF-Stage-a1c1adea-80cb-449b-84bf-f211412a6f80",
     "prefix": "CT",
@@ -835,7 +835,7 @@
                     "styleAsButton": false,
                     "hideWhenBlank": false,
                     "hidden": false,
-                    "displayCondition": "{movingOutOfPortsm} is '' and {movingToPortsmouth} is '' and {landlordAgent} is ''",
+                    "displayCondition": "{movingOutOfPortsm} is '' and {movingToPortsmouth} is '' and {landlordAgent} is '' and {purchase} is ''",
                     "selectCondition": "",
                     "mandatoryCondition": null,
                     "readonlyCondition": null,
@@ -889,6 +889,27 @@
                     {
                       "element": "select",
                       "value": "landlordAgent",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "is ''",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "purchase",
                       "type": [
                         "fields"
                       ]
@@ -971,7 +992,7 @@
                     "styleAsButton": false,
                     "hideWhenBlank": false,
                     "hidden": false,
-                    "displayCondition": "{movingWithin} is '' and {movingToPortsmouth} is '' and {landlordAgent} is ''",
+                    "displayCondition": "{movingWithin} is '' and {movingToPortsmouth} is '' and {landlordAgent} is '' and {purchase} is ''",
                     "selectCondition": "",
                     "mandatoryCondition": null,
                     "readonlyCondition": null,
@@ -1025,6 +1046,27 @@
                     {
                       "element": "select",
                       "value": "landlordAgent",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "is ''",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "purchase",
                       "type": [
                         "fields"
                       ]
@@ -1092,7 +1134,7 @@
                     "styleAsButton": false,
                     "hideWhenBlank": false,
                     "hidden": false,
-                    "displayCondition": "{movingWithin} is '' and {movingOutOfPortsm} is '' and {landlordAgent} is ''",
+                    "displayCondition": "{movingWithin} is '' and {movingOutOfPortsm} is '' and {landlordAgent} is '' and {purchase} is ''",
                     "selectCondition": "",
                     "mandatoryCondition": null,
                     "readonlyCondition": null,
@@ -1156,6 +1198,27 @@
                       "type": [
                         "_select"
                       ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "purchase",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "is ''",
+                      "type": [
+                        "_select"
+                      ]
                     }
                   ],
                   "id": "AF-Field-4e84f91f-487f-45e8-bb89-c3a213b99c2d"
@@ -1200,7 +1263,7 @@
                     "tokenName": null,
                     "listOfValues": [
                       {
-                        "label": "I'm a landlord or agent",
+                        "label": "I'm a landlord or agent, and want to tell you about changes to residents in a property I own or manage",
                         "value": "landlord"
                       }
                     ],
@@ -1213,7 +1276,7 @@
                     "styleAsButton": false,
                     "hideWhenBlank": false,
                     "hidden": false,
-                    "displayCondition": "{movingWithin} is '' and {movingOutOfPortsm} is '' and {movingToPortsmouth} is ''",
+                    "displayCondition": "{movingWithin} is '' and {movingOutOfPortsm} is '' and {movingToPortsmouth} is '' and {purchase} is ''",
                     "selectCondition": "",
                     "mandatoryCondition": null,
                     "readonlyCondition": null,
@@ -1267,6 +1330,27 @@
                     {
                       "element": "select",
                       "value": "movingToPortsmouth",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "is ''",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "purchase",
                       "type": [
                         "fields"
                       ]
@@ -1368,6 +1452,164 @@
                     }
                   ],
                   "id": "AF-Field-2a5092c2-19bb-461f-ac34-0e9321a8285d"
+                },
+                {
+                  "type": "checkbox",
+                  "props": {
+                    "minimumChoices": "",
+                    "maximumChoices": "",
+                    "minimumChoicesMessage": "Please select at least _min_value_ choices",
+                    "maximumChoicesMessage": "Please select no more than _max_value_ choices",
+                    "label": "Purchase property",
+                    "dataName": "purchase",
+                    "labelPosition": "hideLabel",
+                    "defaultType": "specific",
+                    "defaultValue": null,
+                    "defaultValueText": null,
+                    "listSource": "one-time-list",
+                    "helpText": "",
+                    "readOnly": false,
+                    "allowOther": false,
+                    "summaryField": false,
+                    "lookup": null,
+                    "lookupCondition": null,
+                    "lookupButton": null,
+                    "noResultsMessage": null,
+                    "tokenName": null,
+                    "listOfValues": [
+                      {
+                        "label": "I'm purchasing a property in Portsmouth, which is currently unoccupied or is going to be let to tenants",
+                        "value": "purchase"
+                      }
+                    ],
+                    "displayName": "true",
+                    "outerClass": "",
+                    "labelClass": "",
+                    "inputClass": "",
+                    "width": "",
+                    "displayStyle": "horizontal",
+                    "styleAsButton": false,
+                    "hideWhenBlank": false,
+                    "hidden": false,
+                    "displayCondition": "{movingWithin} is '' and {movingOutOfPortsm} is '' and {movingToPortsmouth} is '' and {landlordAgent} is ''",
+                    "selectCondition": "",
+                    "mandatoryCondition": null,
+                    "readonlyCondition": null,
+                    "mandatory": false,
+                    "mandatoryMessage": "This field is required",
+                    "preventRunningOnInitialisation": null
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "movingWithin",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "is ''",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "movingOutOfPortsm",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "is ''",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "movingToPortsmouth",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "is ''",
+                      "type": [
+                        "_select"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "and",
+                      "type": [
+                        "logicalOperators"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "landlordAgent",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "is ''",
+                      "type": [
+                        "_select"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-3fc0a48a-e179-4b62-aee2-f682aa7b06a4"
+                },
+                {
+                  "type": "html",
+                  "props": {
+                    "label": "staticText 13",
+                    "dataName": "statictext131",
+                    "displayName": "",
+                    "outerClass": "",
+                    "width": "",
+                    "showInSummary": false,
+                    "content": "<div>If you are purchasing a property for the purpose of renting to tenants, or the property is to undergo major structural repairs/renovations to make it habitable, please use the <a target=\"_parent\" href=\"{purchasePropertyForm}\">Report the purchase of a property in Portsmouth</a> form to provide details.</div>",
+                    "displayCondition": "{purchase} isnt ''",
+                    "readOnly": false
+                  },
+                  "conditionInputs": [
+                    {
+                      "element": "select",
+                      "value": "purchase",
+                      "type": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "element": "select",
+                      "value": "isnt ''",
+                      "type": [
+                        "_select"
+                      ]
+                    }
+                  ],
+                  "id": "AF-Field-7a38ebc7-eece-45cf-8235-78633398117c"
                 },
                 {
                   "type": "text",
