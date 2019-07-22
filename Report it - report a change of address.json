@@ -2,7 +2,7 @@
   "processName": "Report it - report a change of address",
   "processDescription": "",
   "props": {
-    "id": "AF-Process-b25449cb-f5f2-4754-a6c0-039aeabffc58",
+    "id": "AF-Process-d7d8d106-692c-4b8d-a8ac-448f79fce2b7",
     "category": "AF-Category-fb7c12c7-f0b6-4b7f-9fa3-d6cf94dc0d33",
     "tags": "",
     "viewGroup": "USERGROUP-94990a3b-7dbe-44be-ae0a-f0be56533260",
@@ -12,7 +12,7 @@
     "showCaseReference": false,
     "isPublished": true,
     "isSubform": false,
-    "notes": "corrected field name for checking if there are new students moving in as tenants.",
+    "notes": "update to subform for new address to make address mandatory for moving in or out of city",
     "initial_stage": "Stage 1",
     "initial_stage_id": "AF-Stage-a1c1adea-80cb-449b-84bf-f211412a6f80",
     "prefix": "CT",
@@ -579,7 +579,7 @@
               "showDownload": false,
               "showMessage": true,
               "serverSubmit": true,
-              "redirect": "https://my.portsmouth.gov.uk/en/AchieveForms/?form_uri=sandbox-publish://AF-Process-b25449cb-f5f2-4754-a6c0-039aeabffc58/AF-Stage-a1c1adea-80cb-449b-84bf-f211412a6f80/definition.json&redirectlink=%2Fen&cancelRedirectLink=%2Fen&consentMessage=yes",
+              "redirect": null,
               "condition": "{typeOfChange} is ''",
               "newPaymentMethod": false,
               "prefix": "CT"
@@ -623,9 +623,9 @@
                 "Category": "z Global",
                 "data_type": "integration-lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5774fa2c7f695\",\"systemName\":\"CustomerAccount\",\"query\":\"declare @name varchar(100) \\nset @name = {First_Name} \\n\\nif charindex(' ',@name)>0 \\n(SELECT @name, substring(@name, 1,charindex(' ',@name)) as proc_FirstName ,substring(@name, charindex(' ',@name),len(@name)-charindex(' ',@name)+1) as proc_MiddleName);\\nelse\\n(SELECT @name, @name as proc_FirstName);\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
-                "log_only_on_error": 1,
-                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"isbat1@portsmouthcc.gov.uk\"}"
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5751960a94361\",\"systemName\":\"CustomerAccount\",\"query\":\"declare @name varchar(100) \\nset @name = {First_Name} \\n\\nif charindex(' ',@name)>0 \\n(SELECT @name, substring(@name, 1,charindex(' ',@name)) as proc_FirstName ,substring(@name, charindex(' ',@name),len(@name)-charindex(' ',@name)+1) as proc_MiddleName);\\nelse\\n(SELECT @name, @name as proc_FirstName);\",\"results_page_columns_db\":\"\",\"escapeTokens\":\"yes\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portmouthcc.gov.uk\"}"
               },
               "58ca773b44b4b": {
                 "Editable": true,
@@ -636,9 +636,9 @@
                 "Category": "z Global",
                 "data_type": "lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"systemID\":\"59a4f21090a7f\",\"systemName\":\"Firmstep Solutions Read\",\"lookup_validation\":\"0\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\",\"query\":\"select CONCAT(trim(concat(sao,' ',pao)),' ',street_name,', ',town_name) as display, uprn as name\\nFROM llpgcache\\nWHERE \\n(\\n(REPLACE(postcode, ' ','') = REPLACE({postcode_search_after},' ',''))\\nOR (concat(trim(concat(sao,' ',pao)),' ',street_name) like concat('%',{postcode_search_after},'%'))\\n)\\nAND length(REPLACE({postcode_search_after},' ',''))>5\\nAND postcode != ''\\nORDER BY CAST(pao AS SIGNED),sao,street_name ASC LIMIT 300\"}",
-                "log_only_on_error": 1,
-                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"isbat1@portmouthcc.gov.uk\"}"
+                "Output_template": "{\"lookup_validation\":\"0\",\"secure_fields_db_database\":\"\",\"results_page_columns_db\":\"\",\"escapeTokens\":\"yes\",\"systemName\":\"Firmstep Solutions Read\",\"query\":\"select CONCAT(trim(concat(sao,' ',pao)),' ',street_name,', ',town_name) as display, uprn as name\\nFROM llpgcache\\nWHERE \\n(\\n(REPLACE(postcode, ' ','') = REPLACE({postcode_search_after},' ',''))\\nOR (concat(trim(concat(sao,' ',pao)),' ',street_name) like concat('%',{postcode_search_after},'%'))\\n)\\nAND length(REPLACE({postcode_search_after},' ',''))>5\\nAND postcode != ''\\nORDER BY CAST(pao AS SIGNED),sao,street_name ASC LIMIT 300\",\"systemID\":\"59dc224eb4f63\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portmouthcc.gov.uk\"}"
               },
               "590c3ada8b554": {
                 "Editable": true,
@@ -650,8 +650,8 @@
                 "data_type": "lookup",
                 "allow_offline": 0,
                 "Output_template": "{\"lookup_validation\":\"0\",\"method\":\"GET\",\"url\":\"https://{host}/apibroker/?key={apibrokerKey}&pass={apibrokerPass}&api=getCiviVars&app_name=AchieveService&var=countries\",\"show_headers\":\"no\",\"responseType\":\"JSON\",\"strip_namespaces\":\"1\",\"path_to_values\":\"RepeatableNode\",\"fields\":\"{\\n\\n\\\"value\\\":\\\"name\\\",\\n\\n\\\"label\\\":\\\"display\\\"\\n\\n}\",\"xslt_stylesheet\":\"\",\"results_page_columns\":\"\",\"secure_fields_db_http\":\"\"}",
-                "log_only_on_error": 1,
-                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"isbat1@portsmouthcc.gov.uk\"}"
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               },
               "58ca6c233f02c": {
                 "Editable": true,
@@ -662,9 +662,9 @@
                 "Category": "z Global",
                 "data_type": "lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"systemID\":\"59a4f21090a7f\",\"systemName\":\"Firmstep Solutions Read\",\"lookup_validation\":\"0\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\",\"query\":\"select\\n\\tsao as flat_out,\\n\\tpao as house_out,\\n\\tstreet_name as street_out,\\n\\ttown_name as town_out, \\n\\tpostcode as postcode_out5,\\n\\tuprn as uprn_out,\\n\\tlng as lng_out,\\n\\tlat as lat_out,\\n\\t{Choose_Address} as uprn_selected\\nFROM \\n\\tllpgcache\\nWHERE \\n\\tuprn = {Choose_Address}\"}",
-                "log_only_on_error": 1,
-                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"isbat1@portmouthcc.gov.uk\"}"
+                "Output_template": "{\"lookup_validation\":\"0\",\"results_page_columns_db\":\"\",\"escapeTokens\":\"yes\",\"systemName\":\"Firmstep Solutions Read\",\"query\":\"select\\n\\tsao as flat_out,\\n\\tpao as house_out,\\n\\tstreet_name as street_out,\\n\\ttown_name as town_out, \\n\\tpostcode as postcode_out5,\\n\\tuprn as uprn_out,\\n\\tlng as lng_out,\\n\\tlat as lat_out,\\n\\t{Choose_Address} as uprn_selected\\nFROM \\n\\tllpgcache\\nWHERE \\n\\tuprn = {Choose_Address}\",\"systemID\":\"59dc224eb4f63\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portmouthcc.gov.uk\"}"
               },
               "58caab1689189": {
                 "Editable": true,
@@ -675,9 +675,9 @@
                 "Category": "z Global",
                 "data_type": "integration-lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"lookup_validation\":\"0\",\"profile_action\":\"get\",\"ucrn\":\"{UCRN}\",\"secure_fields_db_profile\":\"\"}",
-                "log_only_on_error": 1,
-                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"isbat1@portsmouthcc.gov.uk\"}"
+                "Output_template": "{\"lookup_validation\":\"0\",\"profile_action\":\"get\",\"ucrn\":\"{UCRN}\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               },
               "58ca9f8575eb5": {
                 "Editable": true,
@@ -688,9 +688,9 @@
                 "Category": "z Global",
                 "data_type": "lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"systemID\":\"59a4f21090a7f\",\"systemName\":\"Firmstep Solutions Read\",\"lookup_validation\":\"0\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\",\"query\":\"select * From\\n(select\\n\\t1 as IDZZ,\\n\\t1 as existSelected,\\n\\t1 as existingCustomer,\\n\\t{Organisation_Name} as Organisation_Name_out,\\n\\t{Title} as Title_out,\\n\\t{First_Name} as First_Name_out,\\n\\t{Surname} as Surname_out,\\n\\t{flat} as flat_out,\\n\\t{house} as house_out,\\n\\t{street} as street_out,\\n\\t{town} as town_out, \\n\\tif({country} IS NOT NULL and {country} != '' and {country} != 'United Kingdom','',{postcode}) as postcode_out5,\\n\\tif({country} IS NOT NULL and {country} != '' and {country} != 'United Kingdom',{postcode},'') as zIPPostcode,\\n\\t{country} as country_out,\\n\\t{country_id} as sel_country,\\n\\t{uprn} as uprn_out,\\n\\t{lng} as lng_out,\\n\\t{lat} as lat_out,\\n\\t{Date_of_Birth} as Date_of_Birth_out,\\n\\t{Email_Address} as Email_Address_out,\\n\\t{Mobile_Number} as Mobile_Number_out,\\n\\t{Phone_Number} as Phone_Number_out,\\n\\t'ProAi' as haveRun\\nunion select\\n\\t2 as IDZZ,\\n\\t'' as existSelected,\\n\\t'' as existingCustomer,\\n\\t{Organisation_Name} as Organisation_Name_out,\\n\\t{Title} as Title_out,\\n\\t{First_Name} as First_Name_out,\\n\\t{Surname} as Surname_out,\\n\\t'' as flat_out,\\n\\t'' as house_out,\\n\\t'' as street_out,\\n\\t'' as town_out, \\n\\t'' as postcode_out5,\\n\\t'' as zIPPostcode,\\n\\t'' as country_out,\\n\\t'' as sel_country,\\n\\t'' as uprn_out,\\n\\t'' as lng_out,\\n\\t'' as lat_out,\\n\\t{Date_of_Birth} as Date_of_Birth_out,\\n\\t{Email_Address} as Email_Address_out,\\n\\t{Mobile_Number} as Mobile_Number_out,\\n\\t{Phone_Number} as Phone_Number_out,\\n\\t'ProAe' as haveRun) Combine\\nWhere\\n\\tIDZZ = (select if({subParm} like '%dA%' \\n\\t\\t\\tand {subParm} not like '%oNA%'\\n\\t\\t\\tand {postcode} is not null ,1,2) as test)\"}",
-                "log_only_on_error": 1,
-                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"isbat1@portmouthcc.gov.uk\"}"
+                "Output_template": "{\"lookup_validation\":\"0\",\"secure_fields_db_database\":\"\",\"results_page_columns_db\":\"\",\"escapeTokens\":\"yes\",\"systemName\":\"Firmstep Solutions Read\",\"query\":\"select * From\\n(select\\n\\t1 as IDZZ,\\n\\t1 as existSelected,\\n\\t1 as existingCustomer,\\n\\t{Organisation_Name} as Organisation_Name_out,\\n\\t{Title} as Title_out,\\n\\t{First_Name} as First_Name_out,\\n\\t{Surname} as Surname_out,\\n\\t{flat} as flat_out,\\n\\t{house} as house_out,\\n\\t{street} as street_out,\\n\\t{town} as town_out, \\n\\tif({country} IS NOT NULL and {country} != '' and {country} != 'United Kingdom','',{postcode}) as postcode_out5,\\n\\tif({country} IS NOT NULL and {country} != '' and {country} != 'United Kingdom',{postcode},'') as zIPPostcode,\\n\\t{country} as country_out,\\n\\t{country_id} as sel_country,\\n\\t{uprn} as uprn_out,\\n\\t{lng} as lng_out,\\n\\t{lat} as lat_out,\\n\\t{Date_of_Birth} as Date_of_Birth_out,\\n\\t{Email_Address} as Email_Address_out,\\n\\t{Mobile_Number} as Mobile_Number_out,\\n\\t{Phone_Number} as Phone_Number_out,\\n\\t'ProAi' as haveRun\\nunion select\\n\\t2 as IDZZ,\\n\\t'' as existSelected,\\n\\t'' as existingCustomer,\\n\\t{Organisation_Name} as Organisation_Name_out,\\n\\t{Title} as Title_out,\\n\\t{First_Name} as First_Name_out,\\n\\t{Surname} as Surname_out,\\n\\t'' as flat_out,\\n\\t'' as house_out,\\n\\t'' as street_out,\\n\\t'' as town_out, \\n\\t'' as postcode_out5,\\n\\t'' as zIPPostcode,\\n\\t'' as country_out,\\n\\t'' as sel_country,\\n\\t'' as uprn_out,\\n\\t'' as lng_out,\\n\\t'' as lat_out,\\n\\t{Date_of_Birth} as Date_of_Birth_out,\\n\\t{Email_Address} as Email_Address_out,\\n\\t{Mobile_Number} as Mobile_Number_out,\\n\\t{Phone_Number} as Phone_Number_out,\\n\\t'ProAe' as haveRun) Combine\\nWhere\\n\\tIDZZ = (select if({subParm} like '%dA%' \\n\\t\\t\\tand {subParm} not like '%oNA%'\\n\\t\\t\\tand {postcode} is not null ,1,2) as test)\",\"systemID\":\"59dc224eb4f63\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portmouthcc.gov.uk\"}"
               },
               "58cac46f269a2": {
                 "Editable": true,
@@ -701,9 +701,9 @@
                 "Category": "z Global",
                 "data_type": "lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"systemID\":\"59a4f21090a7f\",\"systemName\":\"Firmstep Solutions Read\",\"lookup_validation\":\"0\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\",\"query\":\"select\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), {flat}, '') as flat_out,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), {house}, '') as house_out,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), {street}, '') as street_out,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), {town}, '') as town_out, \\n\\tIF(({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%')\\n\\t\\tand ({country} IS NULL or {country} = '' or {country} = 'United Kingdom')), {postcode}, '') as postcode_out5,\\n\\tIF(({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%')\\n\\t\\tand ({country} IS NOT NULL and {country} != '' and {country} != 'United Kingdom')), {postcode}, '') as zIPPostcode,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), {country}, '') as country_out,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), {uprn}, '') as uprn_out,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), {lng}, '') as lng_out,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), {lat}, '') as lat_out,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), 1, '') as existSelected,\\n IF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), 1, '') as existingCustomer,\\n 'ProcAi' as haveRun\"}",
-                "log_only_on_error": 1,
-                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"isbat1@portmouthcc.gov.uk\"}"
+                "Output_template": "{\"lookup_validation\":\"0\",\"secure_fields_db_database\":\"\",\"results_page_columns_db\":\"\",\"escapeTokens\":\"yes\",\"systemName\":\"Firmstep Solutions Read\",\"query\":\"Select *\\nFrom\\n(select\\n\\t{flat} as flat_out,\\n\\t{house} as house_out,\\n\\t{street} as street_out,\\n\\t{town} as town_out, \\n\\tIF({country} IS NULL or {country} = '' or {country} = 'United Kingdom', {postcode}, '') as postcode_out5,\\n\\tIF({country} IS NOT NULL and {country} != '' and {country} != 'United Kingdom', {postcode}, '') as zIPPostcode,\\n\\t{country} as country_out,\\n\\t{uprn} as uprn_out,\\n\\t{lng} as lng_out,\\n\\t{lat} as lat_out,\\n\\t1 as existSelected,\\n\\t1 as existingCustomer,\\n\\t'ProcAi' as haveRun\\nUnion select\\n\\t'' as flat_out,\\n\\t'' as house_out,\\n\\t'' as street_out,\\n\\t'' as town_out, \\n\\t'' as postcode_out5,\\n\\t'' as zIPPostcode,\\n\\t'' as country_out,\\n\\t'' as uprn_out,\\n\\t'' as lng_out,\\n\\t'' as lat_out,\\n\\t'' as existSelected,\\n\\t'' as existingCustomer,\\n\\t'ProcAi' as haveRun) as Comb\\nWhere\\n\\tIF({existingCustomer} = 1 or ({subParam} like '%dA%' and {haveRun} like '%Ae%'), 1, '') = Comb.existSelected\",\"systemID\":\"59dc224eb4f63\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portmouthcc.gov.uk\"}"
               },
               "58efbd46c0cbd": {
                 "Editable": true,
@@ -714,9 +714,9 @@
                 "Category": "z Global",
                 "data_type": "lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"systemID\":\"59a4f21090a7f\",\"systemName\":\"Firmstep Solutions Read\",\"query\":\"select\\n\\ta.*,\\n\\tif(b.p1 + b.p2 + b.p3 - b.p4 > 2,'Entered','') as uprn_selected,\\n\\tif(b.p1 + b.p2 + b.p3 - b.p4 > 2,'',1) as Address_Found,\\n\\tif(b.p1 + b.p2 + b.p3 - b.p4 > 2,'',concat(if(b.p1 + b.p2 + b.p3 < 3,'<span style=\\\"color:red\\\">The address must contain a flat or house number, road and postcode. </span>',''),if(b.p4 = 1,'<span style=\\\"color:red\\\">&nbsp;The postcode must contain a space, for e.g. \\\"PO1 2AL\\\"</span>',''))) as confMsg,\\n\\t'' as confirmAddress,\\n\\tb.*\\nfrom\\n\\t(select\\n\\t\\t123 as id,\\n\\t\\t{flat_out1} as flat_out,\\n\\t\\t{house_out1} as house_out,\\n\\t\\t{street_out1} as street_out,\\n\\t\\t{town_out1} as town_out, \\n\\t\\t{postcode_out51} as postcode_out5,\\n\\t\\t{zIPPostcode1} as zIPPostcode,\\n\\t\\t{country_out1} as country_out,\\n\\t\\t{sel_country} as country_id_out,\\n\\t\\t'' as uprn_out,\\n\\t\\t'' as lng_out,\\n\\t\\t'' as lat_out,\\n\\t\\t'' as existSelected,\\n\\t\\t'' as existingCustomer) as a\\nRIGHT JOIN\\n\\t(select \\n\\t\\tif(c.p1 + c.p2 + c.p3 - c.p4 > 2,'123','321') as id,\\n\\t\\tc.*\\n\\tfrom\\n\\t(select\\n\\t\\tif({flat_out1} != '' or {house_out1} != '',1,if({subParam} like '%mAd%',0,1)) as p1,\\n\\t\\tif({street_out1} != '',1,if({subParam} like '%mAd%',0,1)) as p2,\\n\\t\\tif({postcode_out51} != '' or {zIPPostcode1} != '',1,if({subParam} like '%mAd%' or {subParam} like '%mPo%',0,1)) as p3,\\n\\t\\tif({postcode_out51} REGEXP '(((^[BEGLMNSbeglmns][1-9][0-9]?)|(^[Ww][2-9])|(^([Aa][BLbl]|[Bb][ABDHLNRSTabnhlnrst]|[Cc][ABFHMORTVWabfhmortvw]|[Dd][ADEGHLNTYadeghlnty]|[Ee][HNXhnx]|[Ff][KYky]|[Gg][LUYluy]|[Hh][ADGPRSUXadgprsux]|[Ii][GMPVgmpv]|[JEje]|[Kk][ATWYatwy]|[Ll][ADELNSUadelnsu]|[Mm][EKLekl]|[Nn][EGNPRWegnprw]|O[LXlx]|[Pp][AEHLORaehlor]|[Rr][GHMghm]|[Ss][AEGKL-Paegkl-pRSTWYrstwy]|[Tt][ADFNQRSWadfnqrsw]|[Uu][Bb]|[Ww][ADFNRSVadfnrsv]|YO|ZE|yo|ze)[0-9][0-9]?)|(^[Ww]1[A-Ha-hJKSTUWjkstuw0-9])|(((^[Ww][Cc][1-2])|(^[Ee][Cc][1-4])|(^[Ss][Ww]1))[ABEHMNPRVWXYabehmnprvwxy]))[_ ]([0-9][ABD-Habd-hJLNP-Ujlnp-uW-Zw-z]{2}))$|(^[Gg][Ii][Rr][_ ]0[Aa]{2})$',0,if({postcode_out51} != '',1,0)) as p4) as c) as b\\nON\\n\\ta.id = b.id\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
-                "log_only_on_error": 1,
-                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"isbat1@portmouthcc.gov.uk\"}"
+                "Output_template": "{\"lookup_validation\":\"0\",\"secure_fields_db_database\":\"\",\"results_page_columns_db\":\"\",\"escapeTokens\":\"yes\",\"systemName\":\"Firmstep Solutions Read\",\"query\":\"select\\n\\ta.*,\\n\\tif(b.p1 + b.p2 + b.p3 - b.p4 > 2,'Entered','') as uprn_selected,\\n\\tif(b.p1 + b.p2 + b.p3 - b.p4 > 2,'',1) as Address_Found,\\n\\tif(b.p1 + b.p2 + b.p3 - b.p4 > 2,'',concat(if(b.p1 + b.p2 + b.p3 < 3,if({subParam} like '%mAl%','<span style=\\\"color:red\\\">The address must contain a flat or house and road. </span>','<span style=\\\"color:red\\\">The address must contain a flat or house number, road and postcode. </span>'),''),if(b.p4 = 1,'<span style=\\\"color:red\\\">&nbsp;The postcode must contain a space, for e.g. \\\"PO1 2AL\\\"</span>',''))) as confMsg,\\n\\t'' as confirmAddress,\\n\\tb.*\\nfrom\\n\\t(select\\n\\t\\t123 as id,\\n\\t\\t{flat_out1} as flat_out,\\n\\t\\t{house_out1} as house_out,\\n\\t\\t{street_out1} as street_out,\\n\\t\\t{town_out1} as town_out, \\n\\t\\t{postcode_out51} as postcode_out5,\\n\\t\\t{zIPPostcode1} as zIPPostcode,\\n\\t\\t{country_out1} as country_out,\\n\\t\\t{sel_country} as country_id_out,\\n\\t\\t'' as uprn_out,\\n\\t\\t'' as lng_out,\\n\\t\\t'' as lat_out,\\n\\t\\t'' as existSelected,\\n\\t\\t'' as existingCustomer) as a\\nRIGHT JOIN\\n\\t(select \\n\\t\\tif(c.p1 + c.p2 + c.p3 - c.p4 > 2,'123','321') as id,\\n\\t\\tc.*\\n\\tfrom\\n\\t(select\\n\\t\\tif({flat_out1} != '' or {house_out1} != '',1,if({subParam} like '%mAd%' or {subParam} like '%mAl%',0,1)) as p1,\\n\\t\\tif({street_out1} != '',1,if({subParam} like '%mAd%'or {subParam} like '%mAl%',0,1)) as p2,\\n\\t\\tif({postcode_out51} != '' or {zIPPostcode1} != '',1,if({subParam} like '%mAd%' or {subParam} like '%mPo%',0,1)) as p3,\\n\\t\\tif({postcode_out51} REGEXP '(((^[BEGLMNSbeglmns][1-9][0-9]?)|(^[Ww][2-9])|(^([Aa][BLbl]|[Bb][ABDHLNRSTabnhlnrst]|[Cc][ABFHMORTVWabfhmortvw]|[Dd][ADEGHLNTYadeghlnty]|[Ee][HNXhnx]|[Ff][KYky]|[Gg][LUYluy]|[Hh][ADGPRSUXadgprsux]|[Ii][GMPVgmpv]|[JEje]|[Kk][ATWYatwy]|[Ll][ADELNSUadelnsu]|[Mm][EKLekl]|[Nn][EGNPRWegnprw]|O[LXlx]|[Pp][AEHLORaehlor]|[Rr][GHMghm]|[Ss][AEGKL-Paegkl-pRSTWYrstwy]|[Tt][ADFNQRSWadfnqrsw]|[UBub]|[Ww][ADFNRSVadfnrsv]|YO|ZE|yo|ze)[0-9][0-9]?)|(^[Ww]1[A-Ha-hJKSTUWjkstuw0-9])|(((^[Ww][Cc][1-2])|(^[Ee][Cc][1-4])|(^[Ss][Ww]1))[ABEHMNPRVWXYabehmnprvwxy]))[_ ]([0-9][ABD-Habd-hJLNP-Ujlnp-uW-Zw-z]{2}))$|(^[Gg][Ii][Rr][_ ]0[Aa]{2})$',0,if({postcode_out51} != '',1,0)) as p4) as c) as b\\nON\\n\\ta.id = b.id\",\"systemID\":\"59dc224eb4f63\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"LIM14\",\"recipients_to\":\"daniel.gregory@portmouthcc.gov.uk\"}"
               },
               "56f3d4dab7cb4": {
                 "Editable": true,
@@ -727,9 +727,9 @@
                 "Category": "z Global",
                 "data_type": "lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5775256573991\",\"systemName\":\"CodeTables\",\"query\":\"EXEC ListCodeValues @TableCode={ctlist1},\\n\\t\\t\\t@LimitText = {ctllimit1}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
-                "log_only_on_error": 1,
-                "error_notification": "{\"LIM_name\":\"Portsmouth\",\"recipients_to\":\"isbat1@portsmouthcc.gov.uk\"}"
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"56f286c867311\",\"systemName\":\"CodeTables\",\"query\":\"EXEC ListCodeValues @TableCode={ctlist1},\\n\\t\\t\\t@LimitText = {ctllimit1}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"Portsmouth\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               },
               "56f3d91d56d66": {
                 "Editable": true,
@@ -740,9 +740,9 @@
                 "Category": "z Global",
                 "data_type": "lookup",
                 "allow_offline": 0,
-                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"5775256573991\",\"systemName\":\"CodeTables\",\"query\":\"EXEC ListCodeValues @TableCode={ctlist2},\\n\\t\\t\\t@LimitText = {ctllimit2}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
-                "log_only_on_error": 1,
-                "error_notification": "{\"LIM_name\":\"Portsmouth\",\"recipients_to\":\"isbat1@portsmouthcc.gov.uk\"}"
+                "Output_template": "{\"lookup_validation\":\"0\",\"systemID\":\"56f286c867311\",\"systemName\":\"CodeTables\",\"query\":\"EXEC ListCodeValues @TableCode={ctlist2},\\n\\t\\t\\t@LimitText = {ctllimit2}\",\"results_page_columns_db\":\"\",\"secure_fields_db_database\":\"\",\"escapeTokens\":\"yes\"}",
+                "log_only_on_error": 0,
+                "error_notification": "{\"LIM_name\":\"Portsmouth\",\"recipients_to\":\"daniel.gregory@portsmouthcc.gov.uk\"}"
               }
             }
           },
@@ -1584,19 +1584,20 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
                         "submission": {
-                          "message": "<p>Your reference number is {summary_ref}.</p><p>Thank you for submitting {form_name}</p><p>{visiblesummary}</p>",
+                          "message": "<p>Your reference number is {summary_ref}.</p>\n<p>Thank you for submitting {form_name}</p>",
                           "api": "/form/submit/",
                           "download": "Download PDF",
                           "cancel_redirect": null,
                           "continue": "Continue",
                           "conditionInputs": "",
-                          "showDownload": true,
+                          "showDownload": false,
                           "showMessage": true,
-                          "serverSubmit": false,
+                          "serverSubmit": true,
                           "redirect": null,
                           "condition": "",
                           "newPaymentMethod": false
@@ -1615,8 +1616,7 @@
                           "disableSaveNotify": false
                         },
                         "hideSaveUrl": false,
-                        "integrationDefinition": [],
-                        "secureField": []
+                        "usePHPIntegrations": true
                       },
                       "sections": [
                         {
@@ -1676,7 +1676,7 @@
                                 "validationConditionMessage": "This field is invalid",
                                 "validationMaskMessageValue": "Select..."
                               },
-                              "id": "AF-Field-e0d90dca-104e-4fdb-803e-1fdbb031427f"
+                              "id": "AF-Field-5c23c17d-a2b0-4ae5-ac37-3869c7231717"
                             },
                             {
                               "type": "text",
@@ -2538,6 +2538,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -6423,6 +6424,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -7293,7 +7295,6 @@
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
-                        "secureField": [],
                         "submission": {
                           "message": "<p>Your reference number is {summary_ref}.</p><p>Thank you for submitting {form_name}</p><p>{visiblesummary}</p>",
                           "api": "/form/submit/",
@@ -7301,12 +7302,11 @@
                           "cancel_redirect": null,
                           "continue": "Continue",
                           "conditionInputs": "",
-                          "showDownload": true,
+                          "showDownload": false,
                           "showMessage": true,
-                          "serverSubmit": false,
+                          "serverSubmit": true,
                           "redirect": null,
                           "condition": "",
-                          "printableIntegrationId": "",
                           "newPaymentMethod": false
                         },
                         "save": {
@@ -7322,7 +7322,8 @@
                           "from": "",
                           "disableSaveNotify": false
                         },
-                        "hideSaveUrl": false
+                        "hideSaveUrl": false,
+                        "usePHPIntegrations": true
                       },
                       "sections": [
                         {
@@ -7351,7 +7352,7 @@
                                 "label": "staticText 2",
                                 "dataName": "statictext2",
                                 "displayName": "",
-                                "content": "<div>We require tenants names and tenancy start date. If you are renting out the property, but tenants are not moving in straight away, please select 'The property is now a second home and is currently empty' from the options above and complete a Landlord move form when tenants move in.</div>",
+                                "content": "<div>We require tenants names and tenancy start date. If you are renting out the property, but tenants are not moving in straight away, please select 'The property is now a second home and is currently empty' from the options above and let us know&nbsp;when tenants move in.</div>",
                                 "outerClass": null,
                                 "width": null,
                                 "showInSummary": null,
@@ -7451,7 +7452,7 @@
                                 "outerClass": "",
                                 "width": "",
                                 "showInSummary": false,
-                                "content": "<h3>Please enter the details for the new tenants below</h3>",
+                                "content": "<h4>Please enter the details for the new tenants below</h4>",
                                 "displayCondition": null,
                                 "readOnly": false
                               },
@@ -7573,7 +7574,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
-                        "isPublished": true,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -8462,6 +8463,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -9261,7 +9263,6 @@
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
-                        "secureField": [],
                         "submission": {
                           "message": "<p>Your reference number is {summary_ref}.</p><p>Thank you for submitting {form_name}</p><p>{visiblesummary}</p>",
                           "api": "/form/submit/",
@@ -9269,12 +9270,11 @@
                           "cancel_redirect": null,
                           "continue": "Continue",
                           "conditionInputs": "",
-                          "showDownload": true,
+                          "showDownload": false,
                           "showMessage": true,
-                          "serverSubmit": false,
+                          "serverSubmit": true,
                           "redirect": null,
                           "condition": "",
-                          "printableIntegrationId": "",
                           "newPaymentMethod": false
                         },
                         "save": {
@@ -9290,7 +9290,8 @@
                           "from": "",
                           "disableSaveNotify": false
                         },
-                        "hideSaveUrl": false
+                        "hideSaveUrl": false,
+                        "usePHPIntegrations": true
                       },
                       "sections": [
                         {
@@ -9617,6 +9618,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -10361,6 +10363,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -10906,7 +10909,7 @@
                                       "conditionInputs": "",
                                       "showDownload": true,
                                       "showMessage": true,
-                                      "serverSubmit": false,
+                                      "serverSubmit": true,
                                       "redirect": null,
                                       "condition": "",
                                       "printableIntegrationId": "",
@@ -10925,7 +10928,8 @@
                                       "from": "",
                                       "disableSaveNotify": false
                                     },
-                                    "hideSaveUrl": false
+                                    "hideSaveUrl": false,
+                                    "usePHPIntegrations": true
                                   },
                                   "sections": [
                                     {
@@ -10987,6 +10991,46 @@
                                           },
                                           "conditionInputs": [],
                                           "id": "AF-Field-0cf42c24-621e-4fc8-8ee2-a917dd498cbd"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "address parts",
+                                            "dataName": "addressParts",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "length(concat(trim({flat_out}), trim({house_out}), trim({street_out}), trim({town_out}), trim({postcode_out5}), trim({country_out})))",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "This field is invalid",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-e3f787d9-d443-4a20-a784-0103d2372ba5"
                                         },
                                         {
                                           "type": "text",
@@ -13400,6 +13444,86 @@
                                           },
                                           "conditionInputs": [],
                                           "id": "AF-Field-9388b2cc-206b-4251-b730-da2a76cce440"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "formated parts",
+                                            "dataName": "formatedParts",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "length(concat({textOut1}, {textOut2}, {textOut3}, {textOut4}, {upPostcode_out}, {addrCountry}))",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "This field is invalid",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-542cd0df-592d-48a2-b876-0b9ded8744cd"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "Check on formatting complete",
+                                            "dataName": "checkOnFormatting",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "{addressParts} + {formatedParts}",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "{addressParts} <= {formatedParts}",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "Please wait while we catch up",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-d095aacf-2b94-49d8-8fae-23b06e057f40"
                                         }
                                       ]
                                     }
@@ -13868,6 +13992,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -14115,7 +14240,7 @@
                                 "label": "Address Parameters",
                                 "dataName": "addrParam",
                                 "labelPosition": "alignLeft",
-                                "defaultValue": "if({typeOfChange_Main} contains 'out',if({addrOverseas}='yes','ov','op'),'ip mAd')",
+                                "defaultValue": "if({typeOfChange_Main} contains 'out',if({addrOverseas}='yes','ov mAd','op mAd'),'ip mAd')",
                                 "helpText": "",
                                 "hidden": true,
                                 "readOnly": true,
@@ -14219,7 +14344,7 @@
                                       "conditionInputs": "",
                                       "showDownload": true,
                                       "showMessage": true,
-                                      "serverSubmit": false,
+                                      "serverSubmit": true,
                                       "redirect": null,
                                       "condition": "",
                                       "printableIntegrationId": "",
@@ -14238,7 +14363,8 @@
                                       "from": "",
                                       "disableSaveNotify": false
                                     },
-                                    "hideSaveUrl": false
+                                    "hideSaveUrl": false,
+                                    "usePHPIntegrations": true
                                   },
                                   "sections": [
                                     {
@@ -14300,6 +14426,46 @@
                                           },
                                           "conditionInputs": [],
                                           "id": "AF-Field-0cf42c24-621e-4fc8-8ee2-a917dd498cbd"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "address parts",
+                                            "dataName": "addressParts",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "length(concat(trim({flat_out}), trim({house_out}), trim({street_out}), trim({town_out}), trim({postcode_out5}), trim({country_out})))",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "This field is invalid",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-e3f787d9-d443-4a20-a784-0103d2372ba5"
                                         },
                                         {
                                           "type": "text",
@@ -16713,6 +16879,86 @@
                                           },
                                           "conditionInputs": [],
                                           "id": "AF-Field-9388b2cc-206b-4251-b730-da2a76cce440"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "formated parts",
+                                            "dataName": "formatedParts",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "length(concat({textOut1}, {textOut2}, {textOut3}, {textOut4}, {upPostcode_out}, {addrCountry}))",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "This field is invalid",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-542cd0df-592d-48a2-b876-0b9ded8744cd"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "Check on formatting complete",
+                                            "dataName": "checkOnFormatting",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "{addressParts} + {formatedParts}",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "{addressParts} <= {formatedParts}",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "Please wait while we catch up",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-d095aacf-2b94-49d8-8fae-23b06e057f40"
                                         }
                                       ]
                                     }
@@ -17811,7 +18057,7 @@
                           "conditionInputs": "",
                           "showDownload": true,
                           "showMessage": true,
-                          "serverSubmit": false,
+                          "serverSubmit": true,
                           "redirect": null,
                           "condition": "",
                           "printableIntegrationId": "",
@@ -17830,7 +18076,8 @@
                           "from": "",
                           "disableSaveNotify": false
                         },
-                        "hideSaveUrl": false
+                        "hideSaveUrl": false,
+                        "usePHPIntegrations": true
                       },
                       "sections": [
                         {
@@ -17892,6 +18139,46 @@
                               },
                               "conditionInputs": [],
                               "id": "AF-Field-0cf42c24-621e-4fc8-8ee2-a917dd498cbd"
+                            },
+                            {
+                              "type": "text",
+                              "props": {
+                                "label": "address parts",
+                                "dataName": "addressParts",
+                                "labelPosition": "alignLeft",
+                                "defaultValue": "length(concat(trim({flat_out}), trim({house_out}), trim({street_out}), trim({town_out}), trim({postcode_out5}), trim({country_out})))",
+                                "helpText": "",
+                                "hidden": true,
+                                "readOnly": false,
+                                "summaryField": false,
+                                "displayName": true,
+                                "outerClass": null,
+                                "labelClass": null,
+                                "inputClass": null,
+                                "outputFormat": "normal",
+                                "currencyPrefix": null,
+                                "width": null,
+                                "inputMask": null,
+                                "inputMaskPlaceholder": null,
+                                "lengthCount": null,
+                                "hideWhenBlank": null,
+                                "displayCondition": null,
+                                "mandatoryCondition": null,
+                                "readonlyCondition": null,
+                                "mandatory": false,
+                                "minimumLength": "",
+                                "maximumLength": "",
+                                "validationCondition": "",
+                                "validationMask": "",
+                                "mandatoryMessage": "This field is required",
+                                "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                "validationConditionMessage": "This field is invalid",
+                                "validationMaskMessageValue": "Select..."
+                              },
+                              "conditionInputs": [],
+                              "id": "AF-Field-e3f787d9-d443-4a20-a784-0103d2372ba5"
                             },
                             {
                               "type": "text",
@@ -20305,6 +20592,86 @@
                               },
                               "conditionInputs": [],
                               "id": "AF-Field-9388b2cc-206b-4251-b730-da2a76cce440"
+                            },
+                            {
+                              "type": "text",
+                              "props": {
+                                "label": "formated parts",
+                                "dataName": "formatedParts",
+                                "labelPosition": "alignLeft",
+                                "defaultValue": "length(concat({textOut1}, {textOut2}, {textOut3}, {textOut4}, {upPostcode_out}, {addrCountry}))",
+                                "helpText": "",
+                                "hidden": true,
+                                "readOnly": false,
+                                "summaryField": false,
+                                "displayName": true,
+                                "outerClass": null,
+                                "labelClass": null,
+                                "inputClass": null,
+                                "outputFormat": "normal",
+                                "currencyPrefix": null,
+                                "width": null,
+                                "inputMask": null,
+                                "inputMaskPlaceholder": null,
+                                "lengthCount": null,
+                                "hideWhenBlank": null,
+                                "displayCondition": null,
+                                "mandatoryCondition": null,
+                                "readonlyCondition": null,
+                                "mandatory": false,
+                                "minimumLength": "",
+                                "maximumLength": "",
+                                "validationCondition": "",
+                                "validationMask": "",
+                                "mandatoryMessage": "This field is required",
+                                "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                "validationConditionMessage": "This field is invalid",
+                                "validationMaskMessageValue": "Select..."
+                              },
+                              "conditionInputs": [],
+                              "id": "AF-Field-542cd0df-592d-48a2-b876-0b9ded8744cd"
+                            },
+                            {
+                              "type": "text",
+                              "props": {
+                                "label": "Check on formatting complete",
+                                "dataName": "checkOnFormatting",
+                                "labelPosition": "alignLeft",
+                                "defaultValue": "{addressParts} + {formatedParts}",
+                                "helpText": "",
+                                "hidden": true,
+                                "readOnly": false,
+                                "summaryField": false,
+                                "displayName": true,
+                                "outerClass": null,
+                                "labelClass": null,
+                                "inputClass": null,
+                                "outputFormat": "normal",
+                                "currencyPrefix": null,
+                                "width": null,
+                                "inputMask": null,
+                                "inputMaskPlaceholder": null,
+                                "lengthCount": null,
+                                "hideWhenBlank": null,
+                                "displayCondition": null,
+                                "mandatoryCondition": null,
+                                "readonlyCondition": null,
+                                "mandatory": false,
+                                "minimumLength": "",
+                                "maximumLength": "",
+                                "validationCondition": "{addressParts} <= {formatedParts}",
+                                "validationMask": "",
+                                "mandatoryMessage": "This field is required",
+                                "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                "validationConditionMessage": "Please wait while we catch up",
+                                "validationMaskMessageValue": "Select..."
+                              },
+                              "conditionInputs": [],
+                              "id": "AF-Field-d095aacf-2b94-49d8-8fae-23b06e057f40"
                             }
                           ]
                         }
@@ -20788,7 +21155,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
-                        "isPublished": true,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -22204,7 +22571,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
-                        "isPublished": true,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -23855,6 +24222,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -24394,7 +24762,7 @@
                                       "conditionInputs": "",
                                       "showDownload": true,
                                       "showMessage": true,
-                                      "serverSubmit": false,
+                                      "serverSubmit": true,
                                       "redirect": null,
                                       "condition": "",
                                       "printableIntegrationId": "",
@@ -24413,7 +24781,8 @@
                                       "from": "",
                                       "disableSaveNotify": false
                                     },
-                                    "hideSaveUrl": false
+                                    "hideSaveUrl": false,
+                                    "usePHPIntegrations": true
                                   },
                                   "sections": [
                                     {
@@ -24475,6 +24844,46 @@
                                           },
                                           "conditionInputs": [],
                                           "id": "AF-Field-0cf42c24-621e-4fc8-8ee2-a917dd498cbd"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "address parts",
+                                            "dataName": "addressParts",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "length(concat(trim({flat_out}), trim({house_out}), trim({street_out}), trim({town_out}), trim({postcode_out5}), trim({country_out})))",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "This field is invalid",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-e3f787d9-d443-4a20-a784-0103d2372ba5"
                                         },
                                         {
                                           "type": "text",
@@ -26888,6 +27297,86 @@
                                           },
                                           "conditionInputs": [],
                                           "id": "AF-Field-9388b2cc-206b-4251-b730-da2a76cce440"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "formated parts",
+                                            "dataName": "formatedParts",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "length(concat({textOut1}, {textOut2}, {textOut3}, {textOut4}, {upPostcode_out}, {addrCountry}))",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "This field is invalid",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-542cd0df-592d-48a2-b876-0b9ded8744cd"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "Check on formatting complete",
+                                            "dataName": "checkOnFormatting",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "{addressParts} + {formatedParts}",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "{addressParts} <= {formatedParts}",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "Please wait while we catch up",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-d095aacf-2b94-49d8-8fae-23b06e057f40"
                                         }
                                       ]
                                     }
@@ -27598,6 +28087,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -27964,7 +28454,7 @@
                                       "conditionInputs": "",
                                       "showDownload": true,
                                       "showMessage": true,
-                                      "serverSubmit": false,
+                                      "serverSubmit": true,
                                       "redirect": null,
                                       "condition": "",
                                       "printableIntegrationId": "",
@@ -27983,7 +28473,8 @@
                                       "from": "",
                                       "disableSaveNotify": false
                                     },
-                                    "hideSaveUrl": false
+                                    "hideSaveUrl": false,
+                                    "usePHPIntegrations": true
                                   },
                                   "sections": [
                                     {
@@ -28045,6 +28536,46 @@
                                           },
                                           "conditionInputs": [],
                                           "id": "AF-Field-0cf42c24-621e-4fc8-8ee2-a917dd498cbd"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "address parts",
+                                            "dataName": "addressParts",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "length(concat(trim({flat_out}), trim({house_out}), trim({street_out}), trim({town_out}), trim({postcode_out5}), trim({country_out})))",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "This field is invalid",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-e3f787d9-d443-4a20-a784-0103d2372ba5"
                                         },
                                         {
                                           "type": "text",
@@ -30458,6 +30989,86 @@
                                           },
                                           "conditionInputs": [],
                                           "id": "AF-Field-9388b2cc-206b-4251-b730-da2a76cce440"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "formated parts",
+                                            "dataName": "formatedParts",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "length(concat({textOut1}, {textOut2}, {textOut3}, {textOut4}, {upPostcode_out}, {addrCountry}))",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "This field is invalid",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-542cd0df-592d-48a2-b876-0b9ded8744cd"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "Check on formatting complete",
+                                            "dataName": "checkOnFormatting",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "{addressParts} + {formatedParts}",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "{addressParts} <= {formatedParts}",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "Please wait while we catch up",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-d095aacf-2b94-49d8-8fae-23b06e057f40"
                                         }
                                       ]
                                     }
@@ -30933,6 +31544,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -30943,9 +31555,9 @@
                           "cancel_redirect": null,
                           "continue": "Continue",
                           "conditionInputs": "",
-                          "showDownload": true,
+                          "showDownload": false,
                           "showMessage": true,
-                          "serverSubmit": false,
+                          "serverSubmit": true,
                           "redirect": null,
                           "condition": "",
                           "newPaymentMethod": false
@@ -30963,7 +31575,8 @@
                           "from": "",
                           "disableSaveNotify": false
                         },
-                        "hideSaveUrl": false
+                        "hideSaveUrl": false,
+                        "usePHPIntegrations": true
                       },
                       "sections": [
                         {
@@ -30995,7 +31608,7 @@
                                 "outerClass": "",
                                 "width": "",
                                 "showInSummary": false,
-                                "content": "<h2>Direct Debit Setup</h2>\n<h3>Instruction to your Bank or Building Society to pay by Direct Debit</h3>\n<p>A Direct Debit requires up to 10 days' notice. If there are fewer than 10 days until the next payment, the next payment may not be until the subsequent date and therefore instalments may be larger.</p>\n<h2>Bank Details</h2>",
+                                "content": "<h2>Direct Debit Setup</h2>\n<h4>Instruction to your Bank or Building Society to pay by Direct Debit</h4>\n<p>A Direct Debit requires up to 10 days' notice. If there are fewer than 10 days until the next payment, the next payment may not be until the subsequent date and therefore instalments may be larger.</p>\n<h2>Bank Details</h2>",
                                 "displayCondition": null,
                                 "readOnly": false
                               },
@@ -31123,9 +31736,10 @@
                                 "outerClass": "",
                                 "width": "",
                                 "showInSummary": false,
-                                "content": "<p>Unfortunately you cannot complete this process online. Please click on the following link, then print and complete the form. The form can the be sent to the address provided.</p>\n<a href=\"https://www.portsmouth.gov.uk/ext/documents-external/tax-directdebit-mandate.pdf\" target=\"_blank\" style=\"text-decoration:underline;\">Postal application.</a>",
+                                "content": "<p>Unfortunately you cannot complete this process online. Please click on the following link, then print and complete the form. The form can the be sent to the address provided, or as an attachment via email to localtaxation@portsmouthcc.gov.uk</p>\n<a href=\"https://www.portsmouth.gov.uk/ext/documents-external/tax-directdebit-mandate.pdf\" target=\"_blank\" style=\"text-decoration:underline;\">Postal application.</a>",
                                 "displayCondition": "{areMultipleSignatu} icontains 'yes'",
-                                "readOnly": false
+                                "readOnly": false,
+                                "mandatory": false
                               },
                               "conditionInputs": [
                                 {
@@ -31161,9 +31775,10 @@
                                 "outerClass": "",
                                 "width": "",
                                 "showInSummary": false,
-                                "content": "We can't setup Direct Debit payments online for accounts requiring multiple signatures. Please follow the link to print the mandate form <a href=\"https://www.portsmouth.gov.uk/ext/documents-external/tax-directdebit-mandate.pdf\" target=\"_blank\" style=\"text-decoration:underline;\">Direct Debit Mandate.</a> then complete and post to the address included</a>",
+                                "content": "We can't setup Direct Debit payments online for accounts requiring multiple signatures. Please follow the link to print the mandate form <a href=\"https://www.portsmouth.gov.uk/ext/documents-external/tax-directdebit-mandate.pdf\" target=\"_blank\" style=\"text-decoration:underline;\">Direct Debit Mandate.</a> then complete and post to the address included or email to <a href=\"mailto:localtaxation@portsmouthcc.gov.uk\">localtaxation@portsmouthcc.gov.uk</a>",
                                 "displayCondition": "{MultipleSignatures} icontains 'yes'",
-                                "readOnly": false
+                                "readOnly": false,
+                                "mandatory": false
                               },
                               "conditionInputs": [
                                 {
@@ -33005,6 +33620,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -37986,6 +38602,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -38150,7 +38767,7 @@
                                       "conditionInputs": "",
                                       "showDownload": true,
                                       "showMessage": true,
-                                      "serverSubmit": false,
+                                      "serverSubmit": true,
                                       "redirect": null,
                                       "condition": "",
                                       "printableIntegrationId": "",
@@ -38169,7 +38786,8 @@
                                       "from": "",
                                       "disableSaveNotify": false
                                     },
-                                    "hideSaveUrl": false
+                                    "hideSaveUrl": false,
+                                    "usePHPIntegrations": true
                                   },
                                   "sections": [
                                     {
@@ -38231,6 +38849,46 @@
                                           },
                                           "conditionInputs": [],
                                           "id": "AF-Field-0cf42c24-621e-4fc8-8ee2-a917dd498cbd"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "address parts",
+                                            "dataName": "addressParts",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "length(concat(trim({flat_out}), trim({house_out}), trim({street_out}), trim({town_out}), trim({postcode_out5}), trim({country_out})))",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "This field is invalid",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-e3f787d9-d443-4a20-a784-0103d2372ba5"
                                         },
                                         {
                                           "type": "text",
@@ -40644,6 +41302,86 @@
                                           },
                                           "conditionInputs": [],
                                           "id": "AF-Field-9388b2cc-206b-4251-b730-da2a76cce440"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "formated parts",
+                                            "dataName": "formatedParts",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "length(concat({textOut1}, {textOut2}, {textOut3}, {textOut4}, {upPostcode_out}, {addrCountry}))",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "This field is invalid",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-542cd0df-592d-48a2-b876-0b9ded8744cd"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "Check on formatting complete",
+                                            "dataName": "checkOnFormatting",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "{addressParts} + {formatedParts}",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "{addressParts} <= {formatedParts}",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "Please wait while we catch up",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-d095aacf-2b94-49d8-8fae-23b06e057f40"
                                         }
                                       ]
                                     }
@@ -41210,6 +41948,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -41713,7 +42452,7 @@
                                       "conditionInputs": "",
                                       "showDownload": true,
                                       "showMessage": true,
-                                      "serverSubmit": false,
+                                      "serverSubmit": true,
                                       "redirect": null,
                                       "condition": "",
                                       "printableIntegrationId": "",
@@ -41732,7 +42471,8 @@
                                       "from": "",
                                       "disableSaveNotify": false
                                     },
-                                    "hideSaveUrl": false
+                                    "hideSaveUrl": false,
+                                    "usePHPIntegrations": true
                                   },
                                   "sections": [
                                     {
@@ -41794,6 +42534,46 @@
                                           },
                                           "conditionInputs": [],
                                           "id": "AF-Field-0cf42c24-621e-4fc8-8ee2-a917dd498cbd"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "address parts",
+                                            "dataName": "addressParts",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "length(concat(trim({flat_out}), trim({house_out}), trim({street_out}), trim({town_out}), trim({postcode_out5}), trim({country_out})))",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "This field is invalid",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-e3f787d9-d443-4a20-a784-0103d2372ba5"
                                         },
                                         {
                                           "type": "text",
@@ -44207,6 +44987,86 @@
                                           },
                                           "conditionInputs": [],
                                           "id": "AF-Field-9388b2cc-206b-4251-b730-da2a76cce440"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "formated parts",
+                                            "dataName": "formatedParts",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "length(concat({textOut1}, {textOut2}, {textOut3}, {textOut4}, {upPostcode_out}, {addrCountry}))",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "This field is invalid",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-542cd0df-592d-48a2-b876-0b9ded8744cd"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "Check on formatting complete",
+                                            "dataName": "checkOnFormatting",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "{addressParts} + {formatedParts}",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "{addressParts} <= {formatedParts}",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "Please wait while we catch up",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-d095aacf-2b94-49d8-8fae-23b06e057f40"
                                         }
                                       ]
                                     }
@@ -45827,6 +46687,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -46601,6 +47462,7 @@
                         "showFormReference": false,
                         "mustBeValid": true,
                         "hideHeader": false,
+                        "isPublished": false,
                         "isSubform": true,
                         "integrations": [],
                         "notes": false,
@@ -46765,7 +47627,7 @@
                                       "conditionInputs": "",
                                       "showDownload": true,
                                       "showMessage": true,
-                                      "serverSubmit": false,
+                                      "serverSubmit": true,
                                       "redirect": null,
                                       "condition": "",
                                       "printableIntegrationId": "",
@@ -46784,7 +47646,8 @@
                                       "from": "",
                                       "disableSaveNotify": false
                                     },
-                                    "hideSaveUrl": false
+                                    "hideSaveUrl": false,
+                                    "usePHPIntegrations": true
                                   },
                                   "sections": [
                                     {
@@ -46846,6 +47709,46 @@
                                           },
                                           "conditionInputs": [],
                                           "id": "AF-Field-0cf42c24-621e-4fc8-8ee2-a917dd498cbd"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "address parts",
+                                            "dataName": "addressParts",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "length(concat(trim({flat_out}), trim({house_out}), trim({street_out}), trim({town_out}), trim({postcode_out5}), trim({country_out})))",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "This field is invalid",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-e3f787d9-d443-4a20-a784-0103d2372ba5"
                                         },
                                         {
                                           "type": "text",
@@ -49259,6 +50162,86 @@
                                           },
                                           "conditionInputs": [],
                                           "id": "AF-Field-9388b2cc-206b-4251-b730-da2a76cce440"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "formated parts",
+                                            "dataName": "formatedParts",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "length(concat({textOut1}, {textOut2}, {textOut3}, {textOut4}, {upPostcode_out}, {addrCountry}))",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "This field is invalid",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-542cd0df-592d-48a2-b876-0b9ded8744cd"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "props": {
+                                            "label": "Check on formatting complete",
+                                            "dataName": "checkOnFormatting",
+                                            "labelPosition": "alignLeft",
+                                            "defaultValue": "{addressParts} + {formatedParts}",
+                                            "helpText": "",
+                                            "hidden": true,
+                                            "readOnly": false,
+                                            "summaryField": false,
+                                            "displayName": true,
+                                            "outerClass": null,
+                                            "labelClass": null,
+                                            "inputClass": null,
+                                            "outputFormat": "normal",
+                                            "currencyPrefix": null,
+                                            "width": null,
+                                            "inputMask": null,
+                                            "inputMaskPlaceholder": null,
+                                            "lengthCount": null,
+                                            "hideWhenBlank": null,
+                                            "displayCondition": null,
+                                            "mandatoryCondition": null,
+                                            "readonlyCondition": null,
+                                            "mandatory": false,
+                                            "minimumLength": "",
+                                            "maximumLength": "",
+                                            "validationCondition": "{addressParts} <= {formatedParts}",
+                                            "validationMask": "",
+                                            "mandatoryMessage": "This field is required",
+                                            "minimumLengthMessage": "Please input at least _min_value_ characters",
+                                            "maximumLengthMessage": "Please input no more than _max_value_ characters",
+                                            "validationMaskMessage": "Please input text of the format: _validation_mask_",
+                                            "validationConditionMessage": "Please wait while we catch up",
+                                            "validationMaskMessageValue": "Select..."
+                                          },
+                                          "conditionInputs": [],
+                                          "id": "AF-Field-d095aacf-2b94-49d8-8fae-23b06e057f40"
                                         }
                                       ]
                                     }
@@ -49956,6 +50939,11 @@
         {
           "label": "CSA",
           "dataName": "CSA",
+          "populated": true
+        },
+        {
+          "label": "Are you completing this form on a mobile device?",
+          "dataName": "on_mobile",
           "populated": true
         },
         {
