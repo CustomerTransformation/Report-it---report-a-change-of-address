@@ -12,7 +12,7 @@
     "showCaseReference": false,
     "isPublished": true,
     "isSubform": false,
-    "notes": "removed the warning about navigating away from the page",
+    "notes": "update wording on option for purchasing a property",
     "initial_stage": "Stage 1",
     "initial_stage_id": "AF-Stage-a1c1adea-80cb-449b-84bf-f211412a6f80",
     "prefix": "CT",
@@ -1478,7 +1478,7 @@
                     "tokenName": null,
                     "listOfValues": [
                       {
-                        "label": "I'm purchasing a property in Portsmouth, which is currently unoccupied or is going to be let to tenants",
+                        "label": "I'm purchasing (or have recently purchased) a property in Portsmouth, which is currently unoccupied or is going to be let to tenants",
                         "value": "purchase"
                       }
                     ],
