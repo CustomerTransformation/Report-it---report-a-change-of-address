@@ -1,0 +1,367 @@
+{
+  "formName": "SubFrom Old Property Tenancy Info Part 1",
+  "formDescription": "",
+  "props": {
+    "id": "AF-Form-b15f9937-b8af-45b0-9853-69a237defce9",
+    "category": "AF-Category-fb7c12c7-f0b6-4b7f-9fa3-d6cf94dc0d33",
+    "saveSubmissionData": true,
+    "usePHPIntregration": false,
+    "serverSideLookupValidation": false,
+    "tags": "",
+    "navigateAwayWarning": "Are you sure you want to navigate away? All progress in this form will be lost.",
+    "navigateAwayWarn": true,
+    "validateOnInit": true,
+    "stopOnFailure": false,
+    "stickyError": false,
+    "showFormReference": false,
+    "mustBeValid": true,
+    "hideHeader": false,
+    "isPublished": false,
+    "isSubform": true,
+    "integrations": [],
+    "notes": false,
+    "submission": {
+      "message": "<p>Your reference number is {summary_ref}.</p><p>Thank you for submitting {form_name}</p><p>{visiblesummary}</p>",
+      "api": "/form/submit/",
+      "download": "Download PDF",
+      "cancel_redirect": null,
+      "continue": "Continue",
+      "conditionInputs": "",
+      "showDownload": false,
+      "showMessage": true,
+      "serverSubmit": true,
+      "redirect": null,
+      "condition": "",
+      "newPaymentMethod": false
+    },
+    "save": {
+      "lim": "3f07ecf4-0dfa-11e2-b0b9-12313b03ed59",
+      "displayCondition": "",
+      "conditionInputs": "",
+      "redirect": null,
+      "allow": false,
+      "fromName": "",
+      "message": "",
+      "subject": "",
+      "mail": false,
+      "from": "",
+      "disableSaveNotify": false
+    },
+    "hideSaveUrl": false,
+    "usePHPIntegrations": true,
+    "integrationDefinition": []
+  },
+  "sections": [
+    {
+      "url": "Section-1.html",
+      "id": "AF-Section-d5675652-f21c-4b55-b349-d1063252c31c",
+      "props": {
+        "hideCancel": false,
+        "conditionInputs": "",
+        "displayCondition": "",
+        "validationInputs": "",
+        "validation": "",
+        "validationMessage": "This Section is Invalid",
+        "validationLookup": {
+          "enableLookup": false,
+          "lookupID": "",
+          "lookupName": "",
+          "lookupValidation": "",
+          "lookupOperator": ""
+        }
+      },
+      "name": "Section 1",
+      "fields": [
+        {
+          "type": "radio",
+          "props": {
+            "label": "Is the Move out date same as tenancy end date?",
+            "dataName": "isTheMoveOutDate",
+            "labelPosition": "alignLeft",
+            "defaultType": "specific",
+            "defaultValue": "",
+            "defaultValueText": null,
+            "listSource": "one-time-list",
+            "helpText": "",
+            "readOnly": false,
+            "allowOther": false,
+            "summaryField": false,
+            "lookup": null,
+            "lookupCondition": null,
+            "lookupButton": null,
+            "preventRunningOnInitialisation": null,
+            "noResultsMessage": null,
+            "tokenName": null,
+            "listOfValues": [
+              {
+                "label": "Yes",
+                "value": "true"
+              },
+              {
+                "label": "No",
+                "value": "false"
+              }
+            ],
+            "displayName": true,
+            "outerClass": null,
+            "labelClass": null,
+            "inputClass": null,
+            "width": null,
+            "displayStyle": "horizontal",
+            "styleAsButton": null,
+            "hideWhenBlank": null,
+            "hidden": null,
+            "displayCondition": null,
+            "selectCondition": null,
+            "mandatoryCondition": null,
+            "readonlyCondition": null,
+            "mandatory": true,
+            "mandatoryMessage": "This field is required"
+          },
+          "conditionInputs": [],
+          "id": "AF-Field-8e82486a-c1d3-4e77-b63a-4b8457716af3"
+        },
+        {
+          "type": "date",
+          "props": {
+            "label": "What is the tenancy end date?",
+            "dataName": "tenancyEnd",
+            "labelPosition": "alignLeft",
+            "defaultType": "specific",
+            "defaultValue": "",
+            "helpText": "",
+            "hidden": false,
+            "readOnly": false,
+            "summaryField": false,
+            "displayName": true,
+            "outerClass": null,
+            "labelClass": null,
+            "inputClass": null,
+            "width": null,
+            "hideWhenBlank": null,
+            "displayAsSeparated": null,
+            "displayCondition": "{isTheMoveOutDate} icontains 'false'",
+            "mandatoryCondition": null,
+            "readonlyCondition": null,
+            "mandatory": true,
+            "minimumValue": "",
+            "maximumValue": "",
+            "mandatoryMessage": "This field is required",
+            "minimumValueMessage": "Please input a date no earlier than _min_value_",
+            "maximumValueMessage": "Please input a date no later than _max_value_",
+            "dateFormatMessage": "Please input a date in the format _date_format_",
+            "dateFormat": ""
+          },
+          "conditionInputs": [
+            {
+              "element": "select",
+              "value": "isTheMoveOutDate",
+              "type": [
+                "fields"
+              ]
+            },
+            {
+              "element": "select",
+              "value": "icontains",
+              "type": [
+                "_select"
+              ]
+            },
+            {
+              "element": "select",
+              "value": "false",
+              "type": [
+                "list"
+              ]
+            }
+          ],
+          "id": "AF-Field-5a9e8762-4a87-4246-a4c7-882560d5f82a"
+        },
+        {
+          "type": "radio",
+          "props": {
+            "label": "Was the property Furnished or Unfurnished?",
+            "dataName": "PropFurnishedUn",
+            "labelPosition": "alignLeft",
+            "defaultType": "specific",
+            "defaultValue": "",
+            "defaultValueText": null,
+            "listSource": "one-time-list",
+            "helpText": "",
+            "readOnly": false,
+            "allowOther": false,
+            "summaryField": false,
+            "lookup": null,
+            "lookupCondition": null,
+            "lookupButton": null,
+            "noResultsMessage": null,
+            "tokenName": null,
+            "listOfValues": [
+              {
+                "label": "Furnished",
+                "value": "Furnished"
+              },
+              {
+                "label": "Unfurnished",
+                "value": "Unfurnished"
+              }
+            ],
+            "displayName": true,
+            "outerClass": null,
+            "labelClass": null,
+            "inputClass": null,
+            "width": null,
+            "displayStyle": "horizontal",
+            "styleAsButton": null,
+            "hideWhenBlank": null,
+            "hidden": null,
+            "displayCondition": null,
+            "selectCondition": "",
+            "mandatoryCondition": null,
+            "readonlyCondition": null,
+            "mandatory": true,
+            "mandatoryMessage": "This field is required"
+          },
+          "conditionInputs": [],
+          "id": "AF-Field-4603f9db-28e0-40e0-af18-716702ca19b2"
+        },
+        {
+          "type": "radio",
+          "props": {
+            "label": "Are all tenants vacating the property at the same time?",
+            "dataName": "allVacating",
+            "labelPosition": "alignLeft",
+            "defaultType": "specific",
+            "defaultValue": "",
+            "defaultValueText": null,
+            "listSource": "one-time-list",
+            "helpText": "",
+            "readOnly": false,
+            "allowOther": false,
+            "summaryField": false,
+            "lookup": null,
+            "lookupCondition": null,
+            "lookupButton": null,
+            "noResultsMessage": null,
+            "tokenName": null,
+            "listOfValues": [
+              {
+                "label": "Yes",
+                "value": "true"
+              },
+              {
+                "label": "No",
+                "value": "false"
+              }
+            ],
+            "displayName": true,
+            "outerClass": null,
+            "labelClass": null,
+            "inputClass": null,
+            "width": null,
+            "displayStyle": "horizontal",
+            "styleAsButton": null,
+            "hideWhenBlank": null,
+            "hidden": null,
+            "displayCondition": null,
+            "selectCondition": null,
+            "mandatoryCondition": null,
+            "readonlyCondition": null,
+            "mandatory": true,
+            "mandatoryMessage": "This field is required",
+            "preventRunningOnInitialisation": null
+          },
+          "conditionInputs": [],
+          "id": "AF-Field-9ef564b2-1944-4505-af2d-a78a23d41678"
+        },
+        {
+          "type": "radio",
+          "props": {
+            "label": "Are all occupants moving out to the same new address?",
+            "dataName": "moveToSame",
+            "labelPosition": "alignLeft",
+            "defaultType": "specific",
+            "defaultValue": "",
+            "defaultValueText": null,
+            "listSource": "one-time-list",
+            "helpText": "",
+            "readOnly": false,
+            "allowOther": false,
+            "summaryField": false,
+            "lookup": null,
+            "lookupCondition": null,
+            "lookupButton": null,
+            "preventRunningOnInitialisation": null,
+            "noResultsMessage": null,
+            "tokenName": null,
+            "listOfValues": [
+              {
+                "label": "Yes",
+                "value": "true"
+              },
+              {
+                "label": "No",
+                "value": "false"
+              }
+            ],
+            "displayName": true,
+            "outerClass": null,
+            "labelClass": null,
+            "inputClass": null,
+            "width": null,
+            "displayStyle": "horizontal",
+            "styleAsButton": null,
+            "hideWhenBlank": null,
+            "hidden": null,
+            "displayCondition": "{typeOfChange} contains 'out'",
+            "selectCondition": null,
+            "weAdviseAgainstTheUseOfSelectConditions;PleaseUseDisplayConditionsInstead.": null,
+            "mandatoryCondition": null,
+            "readonlyCondition": null,
+            "mandatory": true,
+            "mandatoryMessage": "This field is required"
+          },
+          "id": "AF-Field-de1e5aba-22b3-4b26-bc99-252db65d4562"
+        },
+        {
+          "type": "staticText",
+          "props": {
+            "label": "staticText 2",
+            "dataName": "statictext2",
+            "displayName": "",
+            "content": "<div>Please enter names of the adults remaining at the property</div>",
+            "outerClass": null,
+            "width": null,
+            "showInSummary": null,
+            "displayCondition": "{allVacating} icontains 'false'",
+            "readOnly": false
+          },
+          "conditionInputs": [
+            {
+              "element": "select",
+              "value": "allVacating",
+              "type": [
+                "fields"
+              ]
+            },
+            {
+              "element": "select",
+              "value": "icontains",
+              "type": [
+                "_select"
+              ]
+            },
+            {
+              "element": "select",
+              "value": "false",
+              "type": [
+                "list"
+              ]
+            }
+          ],
+          "id": "AF-Field-5ddf7a6b-d451-41ad-a8ea-ed5a3ea3fb76"
+        }
+      ]
+    }
+  ]
+}
